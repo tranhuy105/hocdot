@@ -1,6 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Đề bài:
+Viết một chương trình để tìm độ dài của dãy con (subarray) dài nhất có tổng bằng `K` trong một mảng số nguyên.
+
+Yêu cầu:
+- Một dãy con (subarray) là một đoạn liên tiếp trong mảng.
+- Tìm độ dài lớn nhất của dãy con sao cho tổng của các phần tử trong dãy con đó bằng `K`.
+
+Đầu vào:
+- Một số nguyên `N` đại diện cho độ dài của mảng.
+- Một số nguyên `K` là tổng mục tiêu.
+- Một mảng số nguyên `A` có độ dài `N`.
+
+Đầu ra:
+- Một số nguyên biểu thị độ dài của dãy con dài nhất có tổng bằng `K`.
+
+Ví dụ:
+- Input: A = {-1, 2, 3}, N = 3, K = 6
+- Output: 2 (dãy con dài nhất là {2, 3})
+
+Ghi chú:
+- Mảng có thể chứa cả số dương và số âm.
+- Nếu không tìm được dãy con nào có tổng bằng `K`, trả về 0.
+*/
+
+
 // O(n^2)
 int lenOfLongSubarr1(int A[],  int N, int K) 
 { 

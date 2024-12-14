@@ -4,56 +4,51 @@
 
 using namespace std;
 
+/*
+Đề bài:
+Viết một chương trình để đếm số lượng dãy con (subarray) trong một mảng sao cho tổng của các phần tử trong dãy con đó bằng `k`.
+
+Yêu cầu:
+- Tìm tất cả các dãy con liên tiếp có tổng bằng `k`.
+- Tối ưu hóa về thời gian và không gian bằng cách sử dụng các kỹ thuật như mảng tổng tiền tố (prefix sum) hoặc cấu trúc dữ liệu hash map.
+
+Đầu vào:
+- Một vector số nguyên `nums`.
+- Một số nguyên `k` là tổng mục tiêu.
+
+Đầu ra:
+- Một số nguyên biểu thị số lượng dãy con có tổng bằng `k`.
+
+Ví dụ:
+- Input: nums = {1, -1, 0}, k = 0
+- Output: 3 (các dãy con là {1, -1}, {-1, 0}, {0})
+*/
+
+
 int subarraySum(vector<int>& nums, int k) {
-    int count = 0;
-    int sum = 0;
-    for (int i = 0; i < nums.size(); i++) {
-        sum = 0;
-        sum += nums[i];
-        if (nums[i] == k) {
-            count++;
+    unordered_map<int, int> mpp;
+    int count = 0, sum = 0;
+
+    mpp[0] = 1; // Trường hợp tổng tiền tố bằng đúng k.
+
+    for (int num : nums) {
+        sum += num;
+
+        // Kiểm tra nếu sum - k đã từng xuất hiện
+        if (mpp.find(sum - k) != mpp.end()) {
+            count += mpp[sum - k];
         }
-        for (int j = i + 1; j < nums.size(); j++) {
-            sum+=nums[j];
-            if (sum == k) {
-                count++;
-            }
-        }
+
+        // Cập nhật hash map với tổng tiền tố hiện tại
+        mpp[sum]++;
     }
 
     return count;
-}
-
-int subarraySum2(vector<int>& nums, int k) {
-    int sumPrefix[nums.size()] = {0};
-    int sum = 0;
-    for (int i = 0; i < nums.size(); i++) {
-        sum+=nums[i];
-        sumPrefix[i] = sum;
-    }
-
-    unordered_map<long, int> mpp;
-    int count = 0;
-    mpp[0] = 1;
-    for (int i = 0; i < nums.size();i++) {
-        if (k == 0) {
-            count+=mpp[sumPrefix[i]-k];
-            mpp[sumPrefix[i]]++;
-        } else {
-            mpp[sumPrefix[i]]++;
-            count+=mpp[sumPrefix[i]-k];
-        }
-    }
-
-    return count;
-}
-
-int subarraySum3(vector<int>& nums, int k) {
-    
 }
 
 int main() {
-    vector<int> arr = {1,-1,0};
-    cout << subarraySum2(arr, 0) << endl;
+    vector<int> nums = {1, -1, 0};
+    int k = 0;
+    cout << subarraySum(nums, k) << endl; // Output: 3
     return 0;
 }

@@ -4,6 +4,32 @@
 
 using namespace std;
 
+/*
+Đề bài:
+Viết một chương trình để tìm tổng lớn nhất của dãy con (subarray) trong một mảng số nguyên.
+
+Yêu cầu:
+- Một dãy con (subarray) là một đoạn liên tiếp trong mảng.
+- Tìm tổng lớn nhất của dãy con bất kỳ trong mảng.
+
+Đầu vào:
+- Một vector số nguyên `nums`.
+
+Đầu ra:
+- Một số nguyên biểu thị tổng lớn nhất của dãy con trong mảng.
+
+Ví dụ:
+- Input: nums = {2, 0, -3, 2, 1, 0, 1, -2}
+- Output: 4 (dãy con có tổng lớn nhất là {2, 1, 0, 1})
+
+Gợi ý:
+- Các phương pháp tối ưu hóa bao gồm:
+  1. **Duyệt mọi dãy con**: O(n²), tính tổng của tất cả các dãy con và tìm tổng lớn nhất.
+  2. **Thuật toán Greedy**: O(n), cập nhật tổng hiện tại và tổng lớn nhất.
+  3. **Chia để trị** (Divide and Conquer): O(n log n), chia mảng thành hai nửa và tìm kết quả từ các phần.
+*/
+
+
 // TLE lmao
 int maxSubArray(vector<int>& nums) {
     int N = nums.size();

@@ -3,6 +3,26 @@
 
 using namespace std;
 
+/*
+Đề bài:
+Viết một chương trình để di chuyển tất cả các số 0 trong một mảng số nguyên về cuối mảng mà không thay đổi thứ tự tương đối của các số không phải 0.
+
+Yêu cầu:
+- Thực hiện việc di chuyển tại chỗ (in-place), không sử dụng mảng phụ nếu có thể.
+- Tối ưu hóa về thời gian và không gian.
+
+Đầu vào:
+- Một vector số nguyên `nums`.
+
+Đầu ra:
+- Mảng `nums` sau khi tất cả các số 0 được di chuyển về cuối.
+
+Ví dụ:
+- Input: nums = {0, 1, 0, 3, 12}
+- Output: {1, 3, 12, 0, 0}
+*/
+
+
 void moveZeroes(vector<int>& nums) {
     vector<int> temp;
     int zeroCnt = 0;
