@@ -205,7 +205,7 @@ using namespace std;
 //     return mem[i][t] = res;
 // }
 
-// Đếm số LIS.
+// Đếm số LIS có độ dài bằng len
 // int f(int i, int len, int target, vector<int>& nums, vector<vector<int>>& mem) {
 //     if (len > target) return 0; // Dãy quá dài, không hợp lệ
 //     if (len == target) return 1; // Đúng độ dài LIS, đếm 1 cách
