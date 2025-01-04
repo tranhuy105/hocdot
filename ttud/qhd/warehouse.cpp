@@ -35,36 +35,41 @@ Giải thích:
 - Tổng thời gian: 1 + 2 + 3 = 6 (không vượt quá T).
 */
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
-int n; int T; int D;
-vector<int> a; vector<int> t;
+const int maxn = 1004;
+int N; int T; int D;
+int a[maxn];
+int t[maxn];
 
-void solve() {
-    vector<vector<int>> dp(n + 1, vector<int>(T + 1, 0));
+void inp() {
+    cin >> N >> T >> D;
+    for (int i = 1; i <= N; i++) cin >> a[i];
+    for (int i = 1; i <= N; i++) cin >> t[i];
+}
+
+int maxAmount() {
+    // dp[i][w]: tổng số hàng hóa lấy được lớn nhất nếu kết thúc hành trình tại trạm i, với tải trọng còn là w;
+    vector<vector<int>> dp(N+1, vector<int>(T+1, 0));
     int res = 0;
-    for (int i = 1; i < n; i++) {
-        for (int k = 1; k <= T; k++) {
-            dp[i][k] = dp[i-1][k];
-            if (k >= t[i]) {
-                for (int j = max(0, i - D); j < i; j++) {
-                    dp[i][k] = max(dp[i][k], dp[j][k - t[i]] + a[i]);
-                }
-                res = max(res, dp[i][k]);
+
+    for (int i = 1; i <= N; i++) {
+        for (int w = T; w >= t[i]; w--) {
+            for (int j = max(0, i - D); j < i; j++) {
+                dp[i][w] = max(dp[i][w], dp[j][w-t[i]] + a[i]);
             }
+            res = max(res, dp[i][w]);
         }
     }
 
-    cout << res << endl;
+    return res;
 }
 
 int main() {
-    cin >> n >> T >> D;
-    a.resize(n+1); t.resize(n+1);
-    for (int i = 1; i <=n; i++) cin >> a[i];
-    for (int i = 1; i <= n; i++) cin >> t[i];
-    solve();
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    inp();
+    cout << maxAmount() << endl;
     return 0;
 }
